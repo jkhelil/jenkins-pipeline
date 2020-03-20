@@ -1,6 +1,5 @@
-podTemplate(yaml:'''
+podTemplate(cloud: 'openshift', yaml:'''
 spec:
-  cloud: openshift
   containers:
   - name: jnlp
     image: jenkins/jnlp-slave:4.0.1-1
