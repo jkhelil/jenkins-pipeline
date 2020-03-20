@@ -17,8 +17,6 @@ spec:
     - name: home-volume
       mountPath: /home/jenkins
     env:
-    - name: http_proxy
-      value : plop
     - name: HOME
       value: /home/jenkins
     - name: MAVEN_OPTS
@@ -30,8 +28,7 @@ spec:
   node(POD_LABEL) {
     stage('Build a Maven project') {
       container('maven') {
-        git 'https://github.com/jenkinsci/kubernetes-plugin.git'
-        sh 'mvn -B clean package -DskipTests'
+        sh 'env'
       }
     }
   }
