@@ -26,9 +26,9 @@ spec:
     emptyDir: {}
 ''') {
   node(POD_LABEL) {
-    stage('Build a Maven project') {
+    stage('test cat') {
       container('maven') {
-        sh 'env'
+        sh 'cat /bin/init'
       }
     }
   }
