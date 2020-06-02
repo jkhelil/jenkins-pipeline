@@ -28,7 +28,7 @@ spec:
   node(POD_LABEL) {
     stage('test cat') {
       container('maven') {
-        sh 'cat /bin/init'
+        sh 'cat /etc/default/useradd'
       }
     }
   }
