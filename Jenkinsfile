@@ -1,34 +1,10 @@
-podTemplate(cloud: 'openshift', yaml:'''
-spec:
-  containers:
-  - name: jnlp
-    image: jenkins/jnlp-slave:4.0.1-1
-    volumeMounts:
-    - name: home-volume
-      mountPath: /home/jenkins
-    env:
-    - name: HOME
-      value: /home/jenkins
-  - name: maven
-    image: maven:3.6.3-jdk-8
-    command: ['cat']
-    tty: true
-    volumeMounts:
-    - name: home-volume
-      mountPath: /home/jenkins
-    env:
-    - name: HOME
-      value: /home/jenkins
-    - name: MAVEN_OPTS
-      value: -Duser.home=/home/jenkins
-  volumes:
-  - name: home-volume
-    emptyDir: {}
-''') {
+podTemplate(cloud: 'openshift', name: 'maven') {
   node(POD_LABEL) {
     stage('test cat') {
-      container('maven') {
-        sh 'cat /etc/default/useradd'
+      container('jnlp') {
+        sh 'mvn --version'
+        sh 'export JAVA_HOME=/usr/lib/jvm//java-11-openjdk'
+        sh 'mvn clean package -X'
       }
     }
   }
