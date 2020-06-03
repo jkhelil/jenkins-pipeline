@@ -10,7 +10,7 @@ spec:
     - name: HOME
       value: /home/jenkins
   - name: maven
-    image: maven:latest
+    image: ose-jenkins-agent-maven:v4.4.0
     command: ['cat']
     tty: true
     volumeMounts:
