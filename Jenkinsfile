@@ -30,7 +30,7 @@ spec:
       container('maven') {
         sh 'mvn --version'
         sh 'export JAVA_HOME=/usr/lib/jvm//java-11-openjdk'
-        sh 'mvn clean package -X'
+        sh 'sleep 3000'
       }
     }
   }
