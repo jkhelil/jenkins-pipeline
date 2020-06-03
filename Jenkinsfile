@@ -31,7 +31,6 @@ spec:
     stage('Build a Maven project') {
       container('maven') {
         git branch: '1839322', url: 'https://github.com/jkhelil/jenkins-pipeline.git'
-        sh 'mvn --version'
         sh 'sleep 3000'
       }
     }
