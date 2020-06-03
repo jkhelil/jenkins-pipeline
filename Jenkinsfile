@@ -10,7 +10,7 @@ spec:
     - name: HOME
       value: /home/jenkins
   - name: maven
-    image: image-registry.openshift-image-registry.svc:5000/jawed/maven:latest
+    image: maven:latest
     command: ['cat']
     tty: true
     volumeMounts:
