@@ -10,7 +10,7 @@ spec:
     - name: HOME
       value: /home/jenkins
   - name: maven
-    image: ose-jenkins-agent-maven:v4.4.0
+    image: registry.redhat.io/openshift4/ose-jenkins-agent-maven:v4.4.0
     command: ['cat']
     tty: true
     volumeMounts:
@@ -21,6 +21,8 @@ spec:
       value: /home/jenkins
     - name: MAVEN_OPTS
       value: -Duser.home=/home/jenkins
+  imagePullSecrets:
+      - name: 6442445-jawed-pull-secret
   volumes:
   - name: home-volume
     emptyDir: {}
@@ -30,7 +32,7 @@ spec:
       container('maven') {
         git branch: '1839322', url: 'https://github.com/jkhelil/jenkins-pipeline.git'
         sh 'mvn --version'
-        sh 'sleep 3000'
+        sh 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk && mvn clean package -X'
       }
     }
   }
