@@ -30,8 +30,7 @@ spec:
       container('maven') {
         git branch: '1839322', url: 'https://github.com/jkhelil/jenkins-pipeline.git'
         sh 'mvn --version'
-        sh 'export JAVA_HOME=/usr/lib/jvm//java-11-openjdk'
-        sh 'mvn clean package -X'
+        sh 'export JAVA_HOME=/usr/lib/jvm//java-11-openjdk && mvn clean package -X'
       }
     }
   }
