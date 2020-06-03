@@ -31,7 +31,8 @@ spec:
     stage('Build a Maven project') {
       container('maven') {
         git branch: '1839322', url: 'https://github.com/jkhelil/jenkins-pipeline.git'
-        sh 'sleep 3000'
+        sh '/opt/rh/rh-maven35/root/usr/bin/mvn --version'
+        sh 'export JAVA_HOME=/usr/lib/jvm//java-11-openjdk && export /opt/rh/rh-maven35/root/usr/bin/mvn clean package -X'
       }
     }
   }
