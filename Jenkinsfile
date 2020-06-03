@@ -10,7 +10,7 @@ spec:
     - name: HOME
       value: /home/jenkins
   - name: maven
-    image: registry.redhat.io/openshift4/ose-jenkins-agent-maven:v4.4.0
+    image: registry.redhat.io/openshift4/ose-jenkins-agent-maven:v4.3.14 
     command: ['cat']
     tty: true
     volumeMounts:
