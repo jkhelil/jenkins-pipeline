@@ -5,7 +5,11 @@ pipeline {
       steps {
         script {
          node("maven") {
-	  sh 'mvn clean package -X'         
+          git branch: '1839322', url: 'https://github.com/jkhelil/jenkins-pipeline.git'
+	  sh '''
+            cd jenkins-pipeline
+            mvn clean package -X
+          '''         
 }
         }
       }
