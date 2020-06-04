@@ -1,11 +1,11 @@
 pipeline {
-  agent { node { label 'ose-jenkins-agent-maven' } }
+  agent { node { label 'maven' } }
   stages {
     stage('raw') {
       steps {
         script {
-         node("ose-jenkins-agent-maven") {
-	  sh 'mvn --version'         
+         node("maven") {
+	  sh 'mvn clean package -X'         
 }
         }
       }
