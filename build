@@ -1,0 +1,10 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "sample-pipeline"
+  source:
+    binary: {}
+    type: Binary
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: ./jenkinsfile
