@@ -1,5 +1,4 @@
 pipeline {
-  agent { node { label 'maven' } }
   stages {
     stage('raw') {
       steps {
