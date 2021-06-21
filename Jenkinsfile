@@ -1,6 +1,5 @@
-podTemplate(cloud: 'openshift', yaml:'''
+podTemplate(cloud: 'openshift', nodeSelector: 'beta.kubernetes.io/os=linux', yaml:'''
 spec:
-  nodeSelector: beta.kubernetes.io/os=linux
   containers:
   - name: jnlp
     image: jenkins/jnlp-slave:4.0.1-1
