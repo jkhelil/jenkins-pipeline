@@ -1,5 +1,5 @@
 def args = [:]
-args.CLUSTER_NAME = "https://172.30.0.1"
+args.CLUSTER_NAME = "https://api.daily-4.11-092008.dev.openshiftappsvc.org:6443"
 args.PROJECT_NAME = "jawed"
 args.SERVICE_NAME = "jenkins-pipeline"
 args.SERVICE_VERSION = "0.0.1-SNAPSHOT"
@@ -35,8 +35,8 @@ pipeline {
                     script {
                         openshift.withCluster(args.CLUSTER_NAME) {
                             openshift.withProject(args.PROJECT_NAME) {
-                                def build = openshift.selector("bc", "${args.SERVICE_NAME}").exists()
-                                startedBuild = build.startBuild("jenkins-pipeline")
+                                def buildConfig = openshift.selector("bc", "${args.SERVICE_NAME}").exists()
+                                startedBuild = buildConfig.startBuild("jenkins-pipeline")
                                 // Wait and watch logs
                                 startedBuild.logs("-f")
                                 // Check status
