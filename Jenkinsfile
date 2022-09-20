@@ -30,17 +30,6 @@ pipeline {
                     }
                 }
             }
-            stage ('Build') {
-                steps {
-                    script {
-                        echo "Checkout completed. Starting the build"
-                        withMaven(maven: 'maven-latest') {
-                            sh 'mvn -B clean package -DskipTests'
-                            //stash name:"jar", includes:"target/customer-service-*.jar"
-                        }
-                    }
-                }
-            }
             stage('start build') {
                 steps {
                     script {
