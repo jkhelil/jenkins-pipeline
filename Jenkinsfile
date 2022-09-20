@@ -30,20 +30,9 @@ pipeline {
                     }
                 }
             }
-            stage ('Build') {
+            stage('start build') {
                 steps {
                     script {
-                        echo "Checkout completed. Starting the build"
-                        withMaven(maven: 'maven-latest') {
-                            sh 'mvn clean install package'
-                            //stash name:"jar", includes:"target/customer-service-*.jar"
-                        }
-                    }
-                }
-            }
-            stage('Create Image Builder') {
-                when {
-                    expression {
                         openshift.withCluster(args.CLUSTER_NAME) {
                             openshift.withProject(args.PROJECT_NAME) {
                                 def build = openshift.selector("bc", "${args.SERVICE_NAME}").exists()
