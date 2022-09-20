@@ -30,13 +30,24 @@ pipeline {
                     }
                 }
             }
+            stage ('Build') {
+                steps {
+                    script {
+                        echo "Checkout completed. Starting the build"
+                        withMaven(maven: 'maven-latest') {
+                            sh 'mvn -B clean package -DskipTests'
+                            //stash name:"jar", includes:"target/customer-service-*.jar"
+                        }
+                    }
+                }
+            }
             stage('start build') {
                 steps {
                     script {
                         openshift.withCluster() {
                             openshift.withProject(args.PROJECT_NAME) {
-                                def buildConfig = openshift.selector("bc", "${args.SERVICE_NAME}")
-                                def startedBuild = buildConfig.startBuild()
+                                def buildConfig = openshift.selector("bc", "${args.SERVICE_NAME}").
+                                def startedBuild = buildConfig.startBuild("--wait")
                                 // Wait and watch logs
                                 startedBuild.logs("-f")
                                 // Check status
