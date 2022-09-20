@@ -33,7 +33,7 @@ pipeline {
             stage('start build') {
                 steps {
                     script {
-                        openshift.withCluster(args.CLUSTER_NAME) {
+                        openshift.withCluster() {
                             openshift.withProject(args.PROJECT_NAME) {
                                 def buildConfig = openshift.selector("bc", "${args.SERVICE_NAME}")
                                 def startedBuild = buildConfig.startBuild()
