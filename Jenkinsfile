@@ -36,7 +36,7 @@ pipeline {
                         openshift.withCluster(args.CLUSTER_NAME) {
                             openshift.withProject(args.PROJECT_NAME) {
                                 def build = openshift.selector("bc", "${args.SERVICE_NAME}").exists()
-                                startedBuild = build.startBuild()
+                                startedBuild = build.startBuild("jenkins-pipeline")
                                 // Wait and watch logs
                                 startedBuild.logs("-f")
                                 // Check status
