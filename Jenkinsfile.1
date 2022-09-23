@@ -31,7 +31,7 @@ spec:
     stage('Build a Maven project') {
       container('maven') {
         git 'https://github.com/jenkinsci/kubernetes-plugin.git'
-        sh 'mvn -B clean package -DskipTests'
+        sh 'mvn --help'
       }
     }
   }

@@ -36,7 +36,7 @@ pipeline {
                         openshift.withCluster() {
                             openshift.withProject(args.PROJECT_NAME) {
                                 def buildConfig = openshift.selector("bc", "${args.SERVICE_NAME}")
-                                def startedBuild = buildConfig.startBuild("--wait")
+                                def startedBuild = buildConfig.startBuild("")
                                 // Wait and watch logs
                                 startedBuild.logs("-f")
                                 // Check status
