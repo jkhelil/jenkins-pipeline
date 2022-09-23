@@ -1,6 +1,6 @@
 def args = [:]
 args.CLUSTER_NAME = "https://api.daily-4.11-092008.dev.openshiftappsvc.org:6443"
-args.PROJECT_NAME = "jawed1"
+args.PROJECT_NAME = "jawed"
 args.SERVICE_NAME = "jenkins-pipeline"
 args.SERVICE_VERSION = "0.0.1-SNAPSHOT"
 
