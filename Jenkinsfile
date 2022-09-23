@@ -35,10 +35,13 @@ pipeline {
                     script {
                         openshift.withCluster() {
                             openshift.withProject(args.PROJECT_NAME) {
-                                def buildConfig = openshift.selector("bc", "${args.SERVICE_NAME}")
+                                openshift.newBuild("--name=java", "--image-stream=redhat-openjdk18-openshift:latest", "--binary=true")
+
+                                def buildConfig = openshift.selector("bc", "java")
                                 def startedBuild = buildConfig.startBuild("")
                                 // Wait and watch logs
                                 startedBuild.logs("-f")
+                                
                                 // Check status
                                 def status = startedBuild.object().status
                                 echo "build status: ${startedBuild.object().status}";
