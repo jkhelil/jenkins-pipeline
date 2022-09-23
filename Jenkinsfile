@@ -37,7 +37,7 @@ pipeline {
                             openshift.withProject(args.PROJECT_NAME) {
                                 openshift.newApp("--name=jawed-eap", "eap74-basic-s2i")
 
-                                def buildConfig = openshift.selector("bc", "eap-app")
+                                def buildConfig = openshift.selector("bc", "eap-app-build-artifacts-1")
                                 def startedBuild = buildConfig.startBuild("")
                                 // Wait and watch logs
                                 startedBuild.logs("-f")
