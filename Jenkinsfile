@@ -35,9 +35,9 @@ pipeline {
                     script {
                         openshift.withCluster() {
                             openshift.withProject(args.PROJECT_NAME) {
-                                openshift.newBuild("--name=jawed-eap", "--image-stream=eap-app")
+                                //openshift.newBuild("--name=jawed-eap", "--image-stream=eap-app")
 
-                                def buildConfig = openshift.selector("bc", "jawed-eap")
+                                def buildConfig = openshift.selector("bc", "eap-app-build-artifacts")
                                 def startedBuild = buildConfig.startBuild("")
                                 // Wait and watch logs
                                 startedBuild.logs("-f")
