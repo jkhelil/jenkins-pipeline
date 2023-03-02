@@ -2,7 +2,7 @@ podTemplate(cloud: 'openshift', yaml:'''
 spec:
   containers:
   - name: jnlp
-    image: jenkins/jnlp-slave:4.0.1-1
+    image: jenkins/jnlp-slave:4.2.1
     volumeMounts:
     - name: home-volume
       mountPath: /home/jenkins
